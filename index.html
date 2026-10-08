@@ -145,7 +145,7 @@ function openWait(){modal('<h2>WAIT LIST 🛍️</h2>'+(s.waitDone?'<div class="
    const d=i+1,key=dateKey(new Date(y,m,d)),v=totals[key]||0;
    return '<button class="day '+(key===dateKey(today)?"today ":"")+(v?"has-expense":"")+'" data-date="'+key+'">'+d+'<span>'+(v?"🪙":"·")+'</span></button>';
   }).join("");
-  const title=document.querySelector("#calendar .title");if(title)title.textContent=y+"년 "+(m+1)+"월 기록";
+  const title=document.querySelector("#calendar .title");if(title)title.textContent=y+"년 "+(m+1)+"월 기록";const monthLabel=$("calendarMonth");if(monthLabel)monthLabel.textContent=y+"."+(m+1);
   box.querySelectorAll("[data-date]").forEach(b=>b.onclick=()=>{
    const k=b.dataset.date,items=entries.filter(x=>x.date===k);
    modal('<h2>'+k+' 지출</h2>'+(items.length?items.map(x=>'<div class="row"><span>'+esc(x.category)+'</span><b>'+won(x.amount)+'</b></div>').join("")+'<div class="report-stat"><b>합계</b><strong>'+won(items.reduce((a,x)=>a+x.amount,0))+'</strong></div>':'<div class="empty-state">이날 기록한 지출이 없어 🌱</div>'));
